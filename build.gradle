@@ -28,10 +28,6 @@ configurations {
     }
 }
 
-bootRun {
-    systemProperty 'spring.profiles.active', 'testdata'
-}
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
@@ -61,4 +57,22 @@ dependencyManagement {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+bootRun {
+    systemProperty 'spring.profiles.active', 'testdata'
+}
+
+bootBuildImage {
+//    builder = "docker.io/paketobuildpacks/builder-jammy-base"
+    imageName = "${project.name}"
+    environment = ['BP_JVM_VERSION': '17']
+
+    docker {
+        publishRegistry {
+            username = project.findProperty("registryUsername")
+            password = project.findProperty("registryToken")
+            url = project.findProperty("registryUrl")
+        }
+    }
 }
