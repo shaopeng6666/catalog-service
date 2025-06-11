@@ -89,6 +89,9 @@ kubectl get services
 # 删除service
 kubectl delete service catalog-service
 
+# 映射到本机80端口
+kubectl port-forward service/catalog-service 9001:80
+
 # 删除k8s配置文件生成的所有资源
 kubectl delete -f k8s
 ````
