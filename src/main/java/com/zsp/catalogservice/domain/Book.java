@@ -4,10 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.Version;
+import org.springframework.data.annotation.*;
 
 import java.time.Instant;
 
@@ -30,7 +27,7 @@ public record Book(
         String author,
 
         @NotNull(message = "The book price must be defined.")
-        @Positive(message = "The book price must be greater then zero.")
+        @Positive(message = "The book price must be greater than zero.")
         Double price,
 
         String publisher,
@@ -38,8 +35,14 @@ public record Book(
         @CreatedDate
         Instant createdDate,
 
-        @LastModifiedBy
+        @LastModifiedDate
         Instant lastModifiedDate,
+
+        @CreatedBy
+        String createdBy,
+
+        @LastModifiedBy
+        String lastModifiedBy,
 
         @Version
         int version
@@ -51,6 +54,6 @@ public record Book(
             Double price,
             String publisher
     ) {
-        return new Book(null, isbn, title, author, price, publisher, null, null, 0);
+        return new Book(null, isbn, title, author, price, publisher, null, null, null, null, 0);
     }
 }

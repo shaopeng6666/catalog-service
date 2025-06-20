@@ -1,3 +1,13 @@
+server:
+  port: 9001
+  shutdown: graceful
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 15s
+    threads:
+      max: 50
+      min-spare: 5
+
 spring:
   application:
     name: catalog-service
@@ -10,7 +20,7 @@ spring:
       uri: http://localhost:8888
       request-connect-timeout: 5000
       request-read-timeout: 5000
-#      fail-fast: true
+      #      fail-fast: true
       retry:
         max-attempts: 6
         initial-interval: 1000
@@ -23,25 +33,21 @@ spring:
     hikari:
       connection-timeout: 2000
       maximum-pool-size: 5
-#  sql:
-#    init:
-#      mode: always
-
-server:
-  port: 9001
-  shutdown: graceful
-  tomcat:
-    connection-timeout: 2s
-    keep-alive-timeout: 15s
-    threads:
-      max: 50
-      min-spare: 5
-
-polar:
-  greeting: Welcome to the local book catalog!
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/PolarBookshop
 
 management:
   endpoints:
     web:
       exposure:
         include: refresh
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+polar:
+  greeting: Welcome to the local book catalog!

@@ -58,12 +58,6 @@ docker run -d \
 
 # 删除容器    
 docker rm -fv catalog-service polar-postgres
-
-# 使用Docker Compose启动服务
-docker-compose up -d
-
-# 使用Docker Compose停止服务
-docker-compose down
 ````
 
 Kubernetes命令

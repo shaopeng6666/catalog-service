@@ -15,7 +15,6 @@ import java.util.Map;
 @RestControllerAdvice
 public class BookControllerAdvice {
 
-
     @ExceptionHandler(BookNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String bookNotFoundHandler(BookNotFoundException ex) {
@@ -23,7 +22,7 @@ public class BookControllerAdvice {
     }
 
     @ExceptionHandler(BookAlreadyExistsException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     public String bookAlreadyExistsHandler(BookAlreadyExistsException ex) {
         return ex.getMessage();
     }

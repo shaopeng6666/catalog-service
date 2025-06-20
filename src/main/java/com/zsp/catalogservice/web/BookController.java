@@ -23,7 +23,7 @@ public class BookController {
 
     @GetMapping("{isbn}")
     public Book getByIsbn(@PathVariable String isbn) {
-        return bookService.viewBookDetail(isbn);
+        return bookService.viewBookDetails(isbn);
     }
 
     @PostMapping
